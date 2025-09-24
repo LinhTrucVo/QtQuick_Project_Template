@@ -23,7 +23,7 @@ git submodule update --remote --recursive
 After update submodule:
 
 ```bash
-git add src/QtLib_Project_Template
+git add src/lib/QtLib_Project_Template
 git commit -m "updare submodule"
 git push
 ```
