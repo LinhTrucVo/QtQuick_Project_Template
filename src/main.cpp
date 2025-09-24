@@ -8,65 +8,59 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
     app.setQuitOnLastWindowClosed(false);
-    
-    qDebug() << "Hello from main thread";
-    std::cout << "Hello from main thread" << std::endl;
-    printf("Hello from main thread\n");
-
     Bico_QUIThread::setMainApp(&app);
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------
-    Task_1* ui0 = Bico_QUIThread::create<Task_1>
-        (
-            new Bico_DataQueue,
-            1,
-            new Bico_DataQueue,
-            1,
-            "task_0",
-            "qrc:/Client_Code/Task_1/Task_1.qml"
+    Bico_QUIThread_Sample* ui0 = Bico_QUIThread::create<Bico_QUIThread_Sample>
+            (
+                new Bico_DataQueue,
+                1,
+                new Bico_DataQueue,
+                1,
+                "task_0",
+                "qrc:/Client_Code/Bico_QUIThread_Sample/Bico_QUIThread_Sample.qml"
             );
     ui0->start();
 
 
-    Task_1* ui1 = Bico_QUIThread::create<Task_1>
-        (
-            new Bico_DataQueue,
-            1,
-            new Bico_DataQueue,
-            1,
-            "task_1",
-            "qrc:/Client_Code/Task_1/Task_1.qml"
+    Bico_QUIThread_Sample* ui1 = Bico_QUIThread::create<Bico_QUIThread_Sample>
+            (
+                new Bico_DataQueue,
+                1,
+                new Bico_DataQueue,
+                1,
+                "task_1",
+                "qrc:/Client_Code/Bico_QUIThread_Sample/Bico_QUIThread_Sample.qml"
             );
     ui1->start();
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------
 
 // // -----------------------------------------------------------------------------------------------------------------------------------------------
-//     Bico_QUIThread_Sample* ui0 = Bico_QUIThread::create<Bico_QUIThread_Sample>
-//             (
-//                 new Bico_DataQueue,
-//                 1,
-//                 new Bico_DataQueue,
-//                 1,
-//                 "task_0",
-//                 "qrc:/Client_Code/Bico_QUIThread_Sample/Bico_QUIThread_Sample.qml"
+//     Task_1* ui0 = Bico_QUIThread::create<Task_1>
+//         (
+//             new Bico_DataQueue,
+//             1,
+//             new Bico_DataQueue,
+//             1,
+//             "task_0",
+//             "qrc:/Client_Code/Task_1/Task_1.qml"
 //             );
 //     ui0->start();
 
 
-//     Bico_QUIThread_Sample* ui1 = Bico_QUIThread::create<Bico_QUIThread_Sample>
-//             (
-//                 new Bico_DataQueue,
-//                 1,
-//                 new Bico_DataQueue,
-//                 1,
-//                 "task_1",
-//                 "qrc:/Client_Code/Bico_QUIThread_Sample/Bico_QUIThread_Sample.qml"
+//     Task_1* ui1 = Bico_QUIThread::create<Task_1>
+//         (
+//             new Bico_DataQueue,
+//             1,
+//             new Bico_DataQueue,
+//             1,
+//             "task_1",
+//             "qrc:/Client_Code/Task_1/Task_1.qml"
 //             );
 //     ui1->start();
 
 // // -----------------------------------------------------------------------------------------------------------------------------------------------
-
 
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------
