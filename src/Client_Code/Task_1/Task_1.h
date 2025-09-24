@@ -1,19 +1,19 @@
-#ifndef BICO_QUITHREAD_SAMPLE_H
-#define BICO_QUITHREAD_SAMPLE_H
+#ifndef TASK_1_H
+#define TASK_1_H
 
 #include <QJsonDocument>
 #include <QJsonObject>
 
-#include "../../Template_Material/bico_quithread.h"
-#include "Data_Object/Bico_QUIThread_Sample_Data.h"
+#include "bico_quithread.h"
+#include "Data_Object/Task_1_Data.h"
 
 
-class Bico_QUIThread_Sample : public Bico_QUIThread
+class Task_1 : public Bico_QUIThread
 {
     Q_OBJECT
 
 public:
-    Bico_QUIThread_Sample
+    Task_1
     (
         Bico_DataQueue *qin = nullptr,
         uint8_t qin_owner = 0,
@@ -28,7 +28,7 @@ public:
     virtual uint8_t MainTask();
 
 private:
-    Bico_QUIThread_Sample_Data ex_data_obj;
+    Task_1_Data ex_data_obj;
 };
 
-#endif // BICO_QUITHREAD_SAMPLE_H
+#endif // TASK_1_H

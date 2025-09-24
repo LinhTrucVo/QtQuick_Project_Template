@@ -1,4 +1,6 @@
 #include <QGuiApplication>
+#include <QDebug>
+#include <iostream>
 #include "Client_Code/Bico_QUIThread_Sample/Bico_QUIThread_Sample.h"
 #include "Client_Code/Task_1/Task_1.h"
 
@@ -6,6 +8,10 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
     app.setQuitOnLastWindowClosed(false);
+    
+    qDebug() << "Hello from main thread";
+    std::cout << "Hello from main thread" << std::endl;
+    printf("Hello from main thread\n");
 
     Bico_QUIThread::setMainApp(&app);
 
@@ -35,31 +41,31 @@ int main(int argc, char *argv[])
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------
 
-// -----------------------------------------------------------------------------------------------------------------------------------------------
-    // Bico_QUIThread_Sample* ui0 = Bico_QUIThread::create<Bico_QUIThread_Sample>
-    //         (
-    //             new Bico_DataQueue,
-    //             1,
-    //             new Bico_DataQueue,
-    //             1,
-    //             "task_0",
-    //             "qrc:/Client_Code/Bico_QUIThread_Sample/Bico_QUIThread_Sample.qml"
-    //         );
-    // ui0->start();
+// // -----------------------------------------------------------------------------------------------------------------------------------------------
+//     Bico_QUIThread_Sample* ui0 = Bico_QUIThread::create<Bico_QUIThread_Sample>
+//             (
+//                 new Bico_DataQueue,
+//                 1,
+//                 new Bico_DataQueue,
+//                 1,
+//                 "task_0",
+//                 "qrc:/Client_Code/Bico_QUIThread_Sample/Bico_QUIThread_Sample.qml"
+//             );
+//     ui0->start();
 
 
-    // Bico_QUIThread_Sample* ui1 = Bico_QUIThread::create<Bico_QUIThread_Sample>
-    //         (
-    //             new Bico_DataQueue,
-    //             1,
-    //             new Bico_DataQueue,
-    //             1,
-    //             "task_1",
-    //             "qrc:/Client_Code/Bico_QUIThread_Sample/Bico_QUIThread_Sample.qml"
-    //         );
-    // ui1->start();
+//     Bico_QUIThread_Sample* ui1 = Bico_QUIThread::create<Bico_QUIThread_Sample>
+//             (
+//                 new Bico_DataQueue,
+//                 1,
+//                 new Bico_DataQueue,
+//                 1,
+//                 "task_1",
+//                 "qrc:/Client_Code/Bico_QUIThread_Sample/Bico_QUIThread_Sample.qml"
+//             );
+//     ui1->start();
 
-// -----------------------------------------------------------------------------------------------------------------------------------------------
+// // -----------------------------------------------------------------------------------------------------------------------------------------------
 
 
 

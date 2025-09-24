@@ -6,7 +6,7 @@
 #include <QQmlContext>
 #include <QThread>
 
-#include "../Template_Material/Common/bico_qthread.h"
+#include "bico_qthread.h"
 
 
 class Bico_QUIThread : public QThread, public Bico_QThread

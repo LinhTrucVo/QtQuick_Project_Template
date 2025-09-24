@@ -43,7 +43,7 @@ uint8_t Bico_QUIThread_Sample::MainTask()
     // Default work - begin --------------------------------------------------------------
     qDebug() << QString("Hello from ") + objectName();
     qDebug() << "Num of running thread: " << getThreadHash().count();
-    msleep(1000);
+    msleep(100);
 
     if ((objectName() == "task_1") && (getThreadHash().value("task_0") != nullptr))
     {
@@ -51,7 +51,7 @@ uint8_t Bico_QUIThread_Sample::MainTask()
         Bico_QMessData mess_data("from_another_thread", i++);
         mess_data.setSrc(objectName());
         getThreadHash().value("task_0")->qinEnqueue(mess_data);
-        msleep(2365);
+        msleep(236);
     }
 
     qDebug() << Qt::endl;
