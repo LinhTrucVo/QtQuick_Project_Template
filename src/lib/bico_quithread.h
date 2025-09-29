@@ -5,6 +5,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QThread>
+#include <QDirIterator>
 
 #include "bico_qthread.h"
 

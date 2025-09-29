@@ -49,6 +49,10 @@ void Bico_QUIThread::start(QThread::Priority priority)
 {
     if (_ui_path != "")
     {
+        QDirIterator qrc(":", QDirIterator::Subdirectories);
+        while (qrc.hasNext()) {
+            _engine.addImportPath(qrc.next());
+        }
         _engine.load(_ui_path);
 
         QObject* root_object = getRootFirstObj();

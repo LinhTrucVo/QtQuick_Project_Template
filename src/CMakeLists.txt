@@ -51,8 +51,17 @@ qt_add_resources(QtQuick_Project "qml"
         # Specific Section - begin ----------------------------
         Client_Code/Bico_QUIThread_Sample/Bico_QUIThread_Sample.qml
         Client_Code/Task_1/Task_1.qml
+
+        Client_Code/Task_1/UI/Task_1Content/App.qml
+        Client_Code/Task_1/UI/Task_1/qmldir
+        Client_Code/Task_1/UI/Task_1/Constants.qml
         # Specific Section - begin ----------------------------
 )
+
+# set(QML_IMPORT_PATH
+#     ${CMAKE_CURRENT_SOURCE_DIR}/Client_Code/Task_1/UI
+#     CACHE STRING "QML import path" FORCE
+# )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

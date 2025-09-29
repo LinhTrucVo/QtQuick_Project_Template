@@ -1,0 +1,2 @@
+module Task_1
+singleton Constants 1.0 Constants.qml
