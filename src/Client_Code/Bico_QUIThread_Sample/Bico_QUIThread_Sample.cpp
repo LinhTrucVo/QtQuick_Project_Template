@@ -55,7 +55,7 @@ uint8_t Bico_QUIThread_Sample::MainTask()
     }
 
     qDebug() << Qt::endl;
-    // Default work - begin --------------------------------------------------------------
+    // Default work - end--------------------------------------------------------------
 
     // This block of code is to test the remove method
     // Test the remove method - begin --------------------------------------------------------------
