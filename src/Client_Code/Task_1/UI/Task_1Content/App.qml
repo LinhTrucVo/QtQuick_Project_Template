@@ -12,6 +12,25 @@ Window {
     visible: true
     title: qsTr("Hello World")
 
+    SimpleModernButton {
+        objectName: "simpleModernButton"
+        id: simpleModernButton
+        x: 100
+        y: 100
+    }
+
+    ModernButton {
+        objectName: "modernButton"
+        id: modernButton
+        x: 0
+        y: 0
+        text: qsTr("Send to Thread")
+        primaryColor: "#3498db"
+        hoverColor: "#2980b9"
+        width: 140
+        height: 45
+    }
+
     Button {
         objectName: "button"
         id: button
