@@ -1,4 +1,2 @@
 module Task_1
 singleton Constants 1.0 Constants.qml
-ModernButton 1.0 ModernButton.qml
-SimpleModernButton 1.0 SimpleModernButton.qml

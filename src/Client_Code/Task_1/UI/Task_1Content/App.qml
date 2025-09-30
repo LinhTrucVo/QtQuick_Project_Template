@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import Task_1 1.0
+import ModernButton 1.0
 
 Window {
     id: window
@@ -12,9 +13,9 @@ Window {
     visible: true
     title: qsTr("Hello World")
 
-    SimpleModernButton {
-        objectName: "simpleModernButton"
-        id: simpleModernButton
+    WrapperModernButton {
+        objectName: "WrapperModernButton"
+        id: wrapperModernButton
         x: 100
         y: 100
     }

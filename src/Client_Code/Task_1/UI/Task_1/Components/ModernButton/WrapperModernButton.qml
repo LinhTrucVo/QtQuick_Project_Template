@@ -4,7 +4,7 @@ ModernButton {
     // Simple wrapper with fixed size
     width: 140
     height: 45
-    primaryColor: "#e74c3c"
+    primaryColor: '#3ce759'
     hoverColor: "#c0392b"
     pressedColor: "#a93226"
     textColor: "#ffffff"

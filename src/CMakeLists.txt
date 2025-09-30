@@ -55,8 +55,9 @@ qt_add_resources(QtQuick_Project "qml"
         Client_Code/Task_1/UI/Task_1Content/App.qml
         Client_Code/Task_1/UI/Task_1/qmldir
         Client_Code/Task_1/UI/Task_1/Constants.qml
-        Client_Code/Task_1/UI/Task_1/ModernButton.qml
-        Client_Code/Task_1/UI/Task_1/SimpleModernButton.qml
+        Client_Code/Task_1/UI/Task_1/Components/ModernButton/qmldir
+        Client_Code/Task_1/UI/Task_1/Components/ModernButton/ModernButton.qml
+        Client_Code/Task_1/UI/Task_1/Components/ModernButton/WrapperModernButton.qml
         # Specific Section - begin ----------------------------
 )
 
