@@ -2,7 +2,9 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import Task_1 1.0
-import ModernButton 1.0
+import ModernButton
+import ModernButton 1.0 as MB
+import "../Task_1/OtherComponents/ModernButton" as MB1
 
 Window {
     id: window
@@ -10,34 +12,40 @@ Window {
     objectName: "window"
     width: Constants.width
     height: Constants.height
+    // width: 640
+    // height: 480
     visible: true
     title: qsTr("Hello World")
 
-    WrapperModernButton {
+
+    MB.WrapperModernButton {
         objectName: "WrapperModernButton"
         id: wrapperModernButton
-        x: 100
-        y: 100
+        x: 383
+        y: 349
     }
 
-    ModernButton {
-        objectName: "modernButton"
-        id: modernButton
-        x: 0
-        y: 0
-        text: qsTr("Send to Thread")
+    MB1.WrapperModernButton {
+        objectName: "WrapperModernButton"
+        id: wrapperModernButton1
+        x: 383
+        y: 417
         primaryColor: "#3498db"
         hoverColor: "#2980b9"
         width: 140
         height: 45
     }
 
-    Button {
+    ModernButton {
         objectName: "button"
         id: button
-        x: 423
-        y: 287
+        x: 383
+        y: 285
         text: qsTr("main")
+        primaryColor: "#3498db"
+        hoverColor: "#2980b9"
+        width: 140
+        height: 45
 
         onClicked:
         {
@@ -52,6 +60,7 @@ Window {
                 data_to_thread = qdata.text
             }
 
+            console.log(qmess.text + " " + data_to_thread)
             toThread(qmess.text, data_to_thread)
         }
     }

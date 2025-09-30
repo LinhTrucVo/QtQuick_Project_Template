@@ -2,9 +2,9 @@ import QmlProject
 
 Project {
     mainFile: "Task_1Content/App.qml"
-    mainUiFile: "Task_1Content/Screen01.ui.qml"
+    
 
-    /* Include .qml, .js, and image files from current directory and subdirectories */
+    // /* Include .qml, .js, and image files from current directory and subdirectories */
     QmlFiles {
         directory: "Task_1"
     }
@@ -93,7 +93,11 @@ Project {
     qt6Project: true
 
     /* List of plugin directories passed to QML runtime */
-    importPaths: [ "." ]
+    importPaths: [
+        ".",
+        "./Task_1",
+        "./Task_1/Mycomponents",
+    ]
 
     /* Required for deployment */
     targetDirectory: "/opt/Task_1"
@@ -119,4 +123,6 @@ Project {
     supportedLanguages: ["en"]
     primaryLanguage: "en"
 
+
+    mainUiFile: "Task_1/MyComponents/ModernButton/qmldirxx"
 }

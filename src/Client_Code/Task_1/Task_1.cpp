@@ -43,7 +43,7 @@ uint8_t Task_1::MainTask()
     // Default work - begin --------------------------------------------------------------
     qDebug() << QString("Hello from ") + objectName();
     qDebug() << "Num of running thread: " << getThreadHash().count();
-    msleep(1000);
+    msleep(100);
 
     if ((objectName() == "task_1") && (getThreadHash().value("task_0") != nullptr))
     {
