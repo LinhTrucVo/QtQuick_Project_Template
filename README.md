@@ -54,3 +54,9 @@ cd src/lib/QtLib_Project_Template/tool
 python create_client_code.py
 ```
 <img width="267" height="182" alt="image" src="https://github.com/user-attachments/assets/36189443-605b-42ed-ab66-f52f14fcc2a9" />
+
+
+## Debugging Tips:
+qDebug does not output the message to VSCode Debug Console, qDebug output the message in Qt Creator only.
+To print debug message in VSCode Debug Console, use the VSCode LogPoint instead.
+Reference: https://code.visualstudio.com/docs/debugtest/debugging
