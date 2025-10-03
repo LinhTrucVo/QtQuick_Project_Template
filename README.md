@@ -58,5 +58,7 @@ python create_client_code.py
 
 ## Debugging Tips:
 qDebug does not output the message to VSCode Debug Console, qDebug output the message in Qt Creator only.
+
 To print debug message in VSCode Debug Console, use the VSCode LogPoint instead.
+
 Reference: https://code.visualstudio.com/docs/debugtest/debugging
