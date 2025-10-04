@@ -4,9 +4,9 @@ import QtQuick.Controls 2.12
 Button {
     id: modernButton
     
-    property color primaryColor: "#3498db"
-    property color hoverColor: "#2980b9"
-    property color pressedColor: "#1f6fb3"
+    property color primaryColor: '#db34a3'
+    property color hoverColor: '#b92989'
+    property color pressedColor: '#b31f4b'
     property color textColor: "#ffffff"
     property color disabledColor: "#bdc3c7"
     property int animationDuration: 150

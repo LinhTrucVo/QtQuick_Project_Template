@@ -1,6 +1,7 @@
 {
     "iis.configDir": "",
     "files.associations": {
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "qguiapplication": "cpp"
     }
 }

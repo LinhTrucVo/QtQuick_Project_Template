@@ -1,63 +1,22 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
+
+// By importing module by path, the component appears
+// in the Component tab in design mode.
+// This makes the component available for preview and
+// be able to dropped in design mode.
 import "../Task_1/MyComponents/ModernButton"
+import "../Task_1/OtherComponents/ModernButton"
 
 Window {
     id: window
-
     objectName: "window"
     width: 640
     height: 480
     visible: true
     title: qsTr("Hello World")
 
-    ModernButton {
-        objectName: "button"
-        id: button
-        x: 383
-        y: 285
-        text: qsTr("main")
-        primaryColor: "#3498db"
-        hoverColor: "#2980b9"
-        width: 140
-        height: 45
-
-        onClicked:
-        {
-            var data_to_thread
-            if (qmess.text == "size")
-            {
-                // data_to_thread = Qt.size(int(qdata.text), int(qdata.text))
-                data_to_thread = Qt.size(Number(qdata.text), Number(qdata.text))
-            }
-            else
-            {
-                data_to_thread = qdata.text
-            }
-
-            console.log(qmess.text + " " + data_to_thread)
-            toThread(qmess.text, data_to_thread)
-        }
-    }
-
-    TextField {
-        id: qmess
-        x: 205
-        y: 149
-        width: 318
-        height: 40
-        placeholderText: qsTr("mess")
-    }
-
-    TextField {
-        id: qdata
-        x: 205
-        y: 214
-        width: 318
-        height: 40
-        placeholderText: qsTr("data")
-    }
 
 // =====================================================================================================================================================================
 
@@ -99,4 +58,64 @@ Window {
     // Handle data from Thread - end ------------------------------------------------------------------
 
 // Signal handling - end ---------------------------------------------------------------------------------------------------
+
+
+
+
+    // this ModernButton is from OtherComponents
+    // not from the MyComponents.
+    // Reason: if there are multiple module have
+    // the same component name (ModernButton in this case)
+    // the component in the last imported module is used
+    ModernButton {
+        objectName: "button"
+        id: button
+        x: 383
+        y: 285
+        text: qsTr("main")
+        width: 140
+        height: 45
+
+        onClicked:
+        {
+            var data_to_thread
+            if (qmess.text === "size")
+            {
+                // data_to_thread = Qt.size(int(qdata.text), int(qdata.text))
+                data_to_thread = Qt.size(Number(qdata.text), Number(qdata.text))
+            }
+            else
+            {
+                data_to_thread = qdata.text
+            }
+
+            console.log(qmess.text + " " + data_to_thread)
+            toThread(qmess.text, data_to_thread)
+        }
+    }
+
+    TextField {
+        id: qmess
+        x: 205
+        y: 149
+        width: 318
+        height: 40
+        placeholderText: qsTr("mess")
+    }
+
+    TextField {
+        id: qdata
+        x: 205
+        y: 214
+        width: 318
+        height: 40
+        placeholderText: qsTr("data")
+    }
+
+    OtherComponentsWrapperModernButton {
+        id: otherComponentsWrapperModernButton
+        x: 383
+        y: 374
+    }
+
 }

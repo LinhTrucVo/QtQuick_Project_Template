@@ -1,4 +1,4 @@
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Client_Code/Task_1)
+include(Client_Code/Task_1/Task_1_Path.cmake)
 
 qt_add_executable(QtQuick_Project
     # Common Section - begin ----------------------------
@@ -10,7 +10,7 @@ qt_add_executable(QtQuick_Project
     main.cpp
 
     # Specific Section - begin ----------------------------
-    ${Task_1_source_files}
+    ${TASK_1_SOURCE_FILES}
     # Specific Section - end ----------------------------
 )
 
@@ -23,48 +23,34 @@ target_include_directories(QtQuick_Project
         
         
         # Specific Section - begin ----------------------------
-        ${Task_1_include_dirs}
+        ${TASK_1_INCLUDE_DIRS}
         # Specific Section - end ----------------------------
+)
+
+qt_add_resources(QtQuick_Project "qml"
+    PREFIX "/"
+    FILES
+        ${TASK_1_QML_FILES}
 )
 
 
 
-# qt_add_resources(QtQuick_Project "qml"
-#     PREFIX "/"
-#     FILES
-#         # Common Section - begin ----------------------------
-#         # ...
-#         # Common Section - end ----------------------------
-        
-        
-#         # Specific Section - begin ----------------------------
 
-#         # Task 1 ------------- - begin
-#         Client_Code/Task_1/UI/Task_1Content/App.qml
-#         Client_Code/Task_1/UI/Task_1/qmldir
-#         Client_Code/Task_1/UI/Task_1/Constants.qml
-#         Client_Code/Task_1/UI/Task_1/MyComponents/ModernButton/qmldir
-#         Client_Code/Task_1/UI/Task_1/MyComponents/ModernButton/ModernButton.qml
-#         Client_Code/Task_1/UI/Task_1/MyComponents/ModernButton/WrapperModernButton.qml
-#         Client_Code/Task_1/UI/Task_1/OtherComponents/ModernButton/ModernButton.qml
-#         Client_Code/Task_1/UI/Task_1/OtherComponents/ModernButton/WrapperModernButton.qml
-#         # Task 1 ------------- - end
 
-#         # Specific Section - begin ----------------------------
-# )
 
-# set(QML_IMPORT_PATH
-#     ${CMAKE_CURRENT_SOURCE_DIR}/Client_Code/Task_1/UI
-#     CACHE STRING "QML import path" FORCE
-# )
+
+
+
+
+
+
+
 
 
 target_link_libraries(QtQuick_Project
     PRIVATE 
         Qt6::Quick
-        Task_1_UI
 )
-
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

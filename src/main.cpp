@@ -9,11 +9,14 @@ int main(int argc, char *argv[])
     app.setQuitOnLastWindowClosed(false);
     Bico_QUIThread::setMainApp(&app);
 
-        QDirIterator qrc(":", QDirIterator::Subdirectories);
-        while (qrc.hasNext()) {
-            qDebug() << (qrc.next());
-        }
+    // // Print all available resource paths
+    // QDirIterator qrc(":", QDirIterator::Subdirectories);
+    // while (qrc.hasNext()) {
+    //     qDebug() << (qrc.next());
+    // }
 
+// Thread with UI --------------------------------------------
+// --------------------------------------------------------
     Task_1* ui0 = Bico_QUIThread::create<Task_1>
             (
                 new Bico_DataQueue,
@@ -21,11 +24,24 @@ int main(int argc, char *argv[])
                 new Bico_DataQueue,
                 1,
                 "task_0",
-                ":/qt/qml/UI/Task_1Content/App.qml"
+                "qrc:/Client_Code/Task_1/UI/Task_1Content/App.qml"
             );
-    ui0->start(); 
+    ui0->start();
+
+    // Task_1* ui1 = Bico_QUIThread::create<Task_1>
+    //         (
+    //             new Bico_DataQueue,
+    //             1,
+    //             new Bico_DataQueue,
+    //             1,
+    //             "task_1",
+    //             "qrc:/Client_Code/Task_1/UI/Task_1Content/App.qml"
+    //         );
+    // ui1->start();
+// --------------------------------------------------------
     
-// -----------------------------------------------------------------------------------------------------------------------------------------------
+// Thread without UI --------------------------------------------
+// --------------------------------------------------------
 //    Task_1* ui0 = Bico_QUIThread::create<Task_1>
 //            (
 //                new Bico_DataQueue,
@@ -36,7 +52,6 @@ int main(int argc, char *argv[])
 //            );
 //    ui0->start();
 
-
 //    Task_1* ui1 = Bico_QUIThread::create<Task_1>
 //            (
 //                new Bico_DataQueue,
@@ -46,7 +61,7 @@ int main(int argc, char *argv[])
 //                "task_1"
 //            );
 //    ui1->start();
-// -----------------------------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------
 
     return app.exec();
 }
