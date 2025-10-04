@@ -9,6 +9,11 @@ int main(int argc, char *argv[])
     app.setQuitOnLastWindowClosed(false);
     Bico_QUIThread::setMainApp(&app);
 
+        QDirIterator qrc(":", QDirIterator::Subdirectories);
+        while (qrc.hasNext()) {
+            qDebug() << (qrc.next());
+        }
+
     Task_1* ui0 = Bico_QUIThread::create<Task_1>
             (
                 new Bico_DataQueue,
@@ -16,7 +21,7 @@ int main(int argc, char *argv[])
                 new Bico_DataQueue,
                 1,
                 "task_0",
-                "qrc:/Client_Code/Task_1/UI/Task_1Content/App.qml"
+                ":/qt/qml/UI/Task_1Content/App.qml"
             );
     ui0->start(); 
     

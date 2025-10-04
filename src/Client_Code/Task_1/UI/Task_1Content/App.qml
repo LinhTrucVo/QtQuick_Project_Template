@@ -1,40 +1,16 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
-import Task_1 1.0
-import ModernButton
-import ModernButton 1.0 as MB
-import "../Task_1/OtherComponents/ModernButton" as MB1
+import "../Task_1/MyComponents/ModernButton"
 
 Window {
     id: window
 
     objectName: "window"
-    width: Constants.width
-    height: Constants.height
-    // width: 640
-    // height: 480
+    width: 640
+    height: 480
     visible: true
     title: qsTr("Hello World")
-
-
-    MB.WrapperModernButton {
-        objectName: "WrapperModernButton"
-        id: wrapperModernButton
-        x: 383
-        y: 349
-    }
-
-    MB1.WrapperModernButton {
-        objectName: "WrapperModernButton"
-        id: wrapperModernButton1
-        x: 383
-        y: 417
-        primaryColor: "#3498db"
-        hoverColor: "#2980b9"
-        width: 140
-        height: 45
-    }
 
     ModernButton {
         objectName: "button"
