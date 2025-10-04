@@ -8,27 +8,21 @@ qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(QtQuick_Project
     # Common Section - begin ----------------------------
-    lib/QtLib_Project_Template/src/bico_qthread.h
-    lib/QtLib_Project_Template/src/bico_qthread.cpp
-    lib/QtLib_Project_Template/src/bico_qmessdata.h
-    lib/QtLib_Project_Template/src/bico_qmessdata.cpp
-    lib/QtLib_Project_Template/src/bico_qmutexqueue.h
     lib/bico_quithread.cpp
-    lib/bico_quithread.h
+    lib/QtLib_Project_Template/src/bico_qthread.cpp
+    lib/QtLib_Project_Template/src/bico_qmessdata.cpp
     # Common Section - end ----------------------------
 
+
     # Specific Section - begin ----------------------------
+
     main.cpp
 
-    Client_Code/Bico_QUIThread_Sample/Bico_QUIThread_Sample.h
-    Client_Code/Bico_QUIThread_Sample/Bico_QUIThread_Sample.cpp
-    Client_Code/Bico_QUIThread_Sample/Data_Object/Bico_QUIThread_Sample_Data.h
-    Client_Code/Bico_QUIThread_Sample/Data_Object/Bico_QUIThread_Sample_Data.cpp
-
-    Client_Code/Task_1/Task_1.h
+    # Task 1 ------------- - begin
     Client_Code/Task_1/Task_1.cpp
-    Client_Code/Task_1/Data_Object/Task_1_Data.h
     Client_Code/Task_1/Data_Object/Task_1_Data.cpp
+    # Task 1 ------------- - end
+    
     # Specific Section - end ----------------------------
 )
 
@@ -39,25 +33,37 @@ target_include_directories(QtQuick_Project
         lib/QtLib_Project_Template/src
         # Common Section - end ----------------------------
         
+        
         # Specific Section - begin ----------------------------
+        
+        # Task 1 ------------- - begin
         Client_Code/Task_1
-        Client_Code/Bico_QWindowThread_Sample
+        # Task 1 ------------- - end
+
         # Specific Section - end ----------------------------
 )
 
 qt_add_resources(QtQuick_Project "qml"
     PREFIX "/"
     FILES
+        # Common Section - begin ----------------------------
+        # ...
+        # Common Section - end ----------------------------
+        
+        
         # Specific Section - begin ----------------------------
-        Client_Code/Bico_QUIThread_Sample/Bico_QUIThread_Sample.qml
-        Client_Code/Task_1/Task_1.qml
 
+        # Task 1 ------------- - begin
         Client_Code/Task_1/UI/Task_1Content/App.qml
         Client_Code/Task_1/UI/Task_1/qmldir
         Client_Code/Task_1/UI/Task_1/Constants.qml
-        Client_Code/Task_1/UI/Task_1/Components/ModernButton/qmldir
-        Client_Code/Task_1/UI/Task_1/Components/ModernButton/ModernButton.qml
-        Client_Code/Task_1/UI/Task_1/Components/ModernButton/WrapperModernButton.qml
+        Client_Code/Task_1/UI/Task_1/MyComponents/ModernButton/qmldir
+        Client_Code/Task_1/UI/Task_1/MyComponents/ModernButton/ModernButton.qml
+        Client_Code/Task_1/UI/Task_1/MyComponents/ModernButton/WrapperModernButton.qml
+        Client_Code/Task_1/UI/Task_1/OtherComponents/ModernButton/ModernButton.qml
+        Client_Code/Task_1/UI/Task_1/OtherComponents/ModernButton/WrapperModernButton.qml
+        # Task 1 ------------- - end
+
         # Specific Section - begin ----------------------------
 )
 
