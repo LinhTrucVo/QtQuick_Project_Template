@@ -1,16 +1,16 @@
 import QmlProject
 
 Project {
-    mainFile: "Task_1Content/App.qml"
+    mainFile: "Task1Content/App.qml"
     
 
     // /* Include .qml, .js, and image files from current directory and subdirectories */
     QmlFiles {
-        directory: "Task_1"
+        directory: "Task1"
     }
 
     QmlFiles {
-        directory: "Task_1Content"
+        directory: "Task1Content"
     }
 
     QmlFiles {
@@ -18,15 +18,15 @@ Project {
     }
 
     JavaScriptFiles {
-        directory: "Task_1"
+        directory: "Task1"
     }
 
     JavaScriptFiles {
-        directory: "Task_1Content"
+        directory: "Task1Content"
     }
 
     ImageFiles {
-        directory: "Task_1Content"
+        directory: "Task1Content"
     }
 
     ImageFiles {
@@ -95,12 +95,12 @@ Project {
     /* List of plugin directories passed to QML runtime */
     importPaths: [
         ".",
-        "./Task_1",
-        "./Task_1/Mycomponents",
+        "./Task1",
+        "./Task1/Mycomponents",
     ]
 
     /* Required for deployment */
-    targetDirectory: "/opt/Task_1"
+    targetDirectory: "/opt/Task1"
 
 
     qdsVersion: "4.7"
@@ -113,10 +113,10 @@ Project {
     /* args: Specifies command line arguments for qsb tool to generate shaders.
        files: Specifies target files for qsb tool. If path is included, it must be relative to this file.
               Wildcard '*' can be used in the file name part of the path.
-              e.g. files: [ "Task_1Content/shaders/*.vert", "*.frag" ]  */
+              e.g. files: [ "Task1Content/shaders/*.vert", "*.frag" ]  */
     ShaderTool {
         args: "-s --glsl \"100 es,120,150\" --hlsl 50 --msl 12"
-        files: [ "Task_1Content/shaders/*" ]
+        files: [ "Task1Content/shaders/*" ]
     }
 
     multilanguageSupport: true
@@ -124,5 +124,5 @@ Project {
     primaryLanguage: "en"
 
 
-    mainUiFile: "Task_1/MyComponents/ModernButton/qmldirxx"
+    mainUiFile: "Task1/MyComponents/ModernButton/qmldirxx"
 }

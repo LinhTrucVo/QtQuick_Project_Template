@@ -1,19 +1,19 @@
-#ifndef TASK_1_H
-#define TASK_1_H
+#ifndef TASK1_H
+#define TASK1_H
 
 #include <QJsonDocument>
 #include <QJsonObject>
 
 #include "bico_quithread.h"
-#include "Data_Object/Task_1_Data.h"
+#include "Data_Object/Task1_Data.h"
 
 
-class Task_1 : public Bico_QUIThread
+class Task1 : public Bico_QUIThread
 {
     Q_OBJECT
 
 public:
-    Task_1
+    Task1
     (
         Bico_DataQueue *qin = nullptr,
         uint8_t qin_owner = 0,
@@ -28,7 +28,7 @@ public:
     virtual uint8_t MainTask();
 
 private:
-    Task_1_Data ex_data_obj;
+    Task1_Data ex_data_obj;
 };
 
-#endif // TASK_1_H
+#endif // TASK1_H

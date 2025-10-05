@@ -1,6 +1,6 @@
-#include "Task_1.h"
+#include "Task1.h"
 
-uint8_t Task_1::MainTask()
+uint8_t Task1::MainTask()
 {
     // continue_to_run is used to terminate the thread by reset it to 0
     uint8_t continue_to_run = 1;

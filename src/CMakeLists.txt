@@ -1,4 +1,5 @@
-include(Client_Code/Task_1/Task_1_Path.cmake)
+
+include(Client_Code/Task1/Task1_Paths.cmake)
 
 qt_add_executable(QtQuick_Project
     # Common Section - begin ----------------------------
@@ -10,7 +11,7 @@ qt_add_executable(QtQuick_Project
     main.cpp
 
     # Specific Section - begin ----------------------------
-    ${TASK_1_SOURCE_FILES}
+    ${TASK1_SOURCE_FILES}
     # Specific Section - end ----------------------------
 )
 
@@ -23,14 +24,14 @@ target_include_directories(QtQuick_Project
         
         
         # Specific Section - begin ----------------------------
-        ${TASK_1_INCLUDE_DIRS}
+        ${TASK1_INCLUDE_DIRS}
         # Specific Section - end ----------------------------
 )
 
 qt_add_resources(QtQuick_Project "qml"
     PREFIX "/"
     FILES
-        ${TASK_1_QML_FILES}
+        ${TASK1_QML_FILES}
 )
 
 

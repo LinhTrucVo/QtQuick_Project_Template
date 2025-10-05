@@ -6,8 +6,8 @@ import QtQuick.Controls 2.12
 // in the Component tab in design mode.
 // This makes the component available for preview and
 // be able to dropped in design mode.
-import "../Task_1/MyComponents/ModernButton"
-import "../Task_1/OtherComponents/ModernButton"
+import "../Task1/MyComponents/ModernButton"
+import "../Task1/OtherComponents/ModernButton"
 
 Window {
     id: window
