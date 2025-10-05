@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
                 new Bico_DataQueue,
                 1,
                 "task_0",
-                ":/Client_Code/Task1/UI/Task1Content/App.qml"
+                "qrc:/Client_Code/Task1/UI/Task1Content/App.qml"
             );
     ui0->start();
 
