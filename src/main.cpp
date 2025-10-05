@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     //             1,
     //             new Bico_DataQueue,
     //             1,
-    //             "Task1",
+    //             "task_1",
     //             "qrc:/Client_Code/Task1/UI/Task1Content/App.qml"
     //         );
     // ui1->start();
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 //                1,
 //                new Bico_DataQueue,
 //                1,
-//                "Task1"
+//                "task_1"
 //            );
 //    ui1->start();
 // --------------------------------------------------------
