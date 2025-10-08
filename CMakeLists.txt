@@ -4,7 +4,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Quick)
-qt_standard_project_setup(REQUIRES 6.8)
+set(CMAKE_AUTOMOC ON)
+# qt_standard_project_setup(REQUIRES 6.8)
 
 # Add the src subdirectory which contains the main CMakeLists.txt
 add_subdirectory(src)
