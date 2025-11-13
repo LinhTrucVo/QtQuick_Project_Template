@@ -1,0 +1,14 @@
+<RCC>
+    <qresource>
+        <file>qtquickcontrols2.conf</file>
+        <file>Task1.qmlproject</file>
+        <file>Task1/Constants/Constants.qml</file>
+        <file>Task1/Constants/qmldir</file>
+        <file>Task1/MyComponents/ModernButton/ModernButton.qml</file>
+        <file>Task1/MyComponents/ModernButton/WrapperModernButton.qml</file>
+        <file>Task1/OtherComponents/ModernButton/ModernButton.qml</file>
+        <file>Task1/OtherComponents/ModernButton/OtherComponentsWrapperModernButton.qml</file>
+        <file>Task1Content/App.qml</file>
+        <file>Task1Content/Screen01.qml</file>
+    </qresource>
+</RCC>

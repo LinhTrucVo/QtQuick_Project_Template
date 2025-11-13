@@ -15,6 +15,9 @@ set(TASK1_INCLUDE_DIRS
 
 set(TASK1_QML_FILES
     ${PARENT_CMAKE_RELATIVE_PATH}/UI/Task1Content/App.qml
+    ${PARENT_CMAKE_RELATIVE_PATH}/UI/Task1Content/Screen01.qml
+    ${PARENT_CMAKE_RELATIVE_PATH}/UI/Task1/Constants/Constants.qml
+    ${PARENT_CMAKE_RELATIVE_PATH}/UI/Task1/Constants/qmldir
     ${PARENT_CMAKE_RELATIVE_PATH}/UI/Task1/MyComponents/ModernButton/ModernButton.qml
     ${PARENT_CMAKE_RELATIVE_PATH}/UI/Task1/MyComponents/ModernButton/WrapperModernButton.qml
     ${PARENT_CMAKE_RELATIVE_PATH}/UI/Task1/OtherComponents/ModernButton/ModernButton.qml
