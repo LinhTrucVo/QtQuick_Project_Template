@@ -159,6 +159,20 @@ Rectangle {
         font.pixelSize: 15
     }
 
+    Button {
+        id: button1
+        x: 220
+        y: 3
+        width: 138
+        height: 40
+        text: qsTr("Create another App")
+
+        onClicked:
+        {
+            toThreadSignal("create", "")
+        }
+    }
+
     states: [
         State {
             name: "State1"
@@ -236,6 +250,6 @@ Rectangle {
 
 /*##^##
 Designer {
-    D{i:0}D{i:4}D{i:22;transitionDuration:2000}
+    D{i:0}D{i:23;transitionDuration:2000}
 }
 ##^##*/

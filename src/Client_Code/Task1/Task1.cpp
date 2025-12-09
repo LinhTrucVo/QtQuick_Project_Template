@@ -1,4 +1,5 @@
 #include "Task1.h"
+#include <QRandomGenerator>
 
 uint8_t Task1::MainTask()
 {
@@ -27,6 +28,22 @@ uint8_t Task1::MainTask()
         {
             qDebug() << objectName() << mess << data.value<QString>();
             emit toUI(mess, data);
+        }
+        else if (mess == QString("create"))
+        {
+            qDebug() << objectName() << mess << data.value<QString>();
+            QString random_id = QString::number(QRandomGenerator::global()->bounded(1000000));
+            QString thread_name = "task_" + random_id;
+            Bico_QUIThread::create<Task1>
+                    (
+                        new Bico_DataQueue,
+                        1,
+                        new Bico_DataQueue,
+                        1,
+                        thread_name,
+                        "qrc:/Client_Code/Task1/UI/Task1Content/App.qml"
+                    );
+            getThreadHash().value(thread_name)->start();
         }
         else if (mess == QString("size"))
         {

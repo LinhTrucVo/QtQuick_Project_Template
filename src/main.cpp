@@ -26,7 +26,8 @@ int main(int argc, char *argv[])
                 "task_0",
                 "qrc:/Client_Code/Task1/UI/Task1Content/App.qml"
             );
-    ui0->start();
+    // ui0->start(); // this one could also be used
+    Bico_QUIThread::getThreadHash().value("task_0")->start();
 
     // Task1* ui1 = Bico_QUIThread::create<Task1>
     //         (
