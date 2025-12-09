@@ -6,13 +6,30 @@
 #include <QQmlContext>
 #include <QThread>
 #include <QDirIterator>
+#include <QMetaObject>
 
 #include "bico_qthread.h"
+
+class Bico_QUIThread;
+
+class EngineLoader : public QObject
+{
+    Q_OBJECT
+
+public:
+    EngineLoader(QObject* parent = nullptr) : QObject(parent) {}
+
+public slots:
+    void createEngine(QObject* thread, QString ui_path, QThread::Priority priority);
+};
+
+extern EngineLoader* engine_loader;
 
 
 class Bico_QUIThread : public QThread, public Bico_QThread
 {
     Q_OBJECT
+    friend class EngineLoader;
 
 public:
     Bico_QUIThread
@@ -34,6 +51,7 @@ public:
     virtual uint8_t MainTask() = 0;
 
     QObject* getRootFirstObj();
+    QQmlApplicationEngine* getEngine();
 
 
 public:
@@ -74,7 +92,7 @@ public:
 
 protected:
     QString _ui_path;
-    QQmlApplicationEngine _engine;
+    QQmlApplicationEngine* _engine;
 
     static QHash<QString, Bico_QUIThread*> thread_hash;
     static QMutex thread_hash_mutex;
