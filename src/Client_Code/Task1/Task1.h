@@ -3,6 +3,7 @@
 
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QStringList>
 
 #include "bico_quithread.h"
 #include "Data_Object/Task1_Data.h"
@@ -25,10 +26,13 @@ public:
     ) : Bico_QUIThread(qin, qin_owner, qout, qout_owner, obj_name, ui_path, parent)
     {}
 
+    virtual ~Task1();
+
     virtual uint8_t MainTask();
 
 private:
     Task1_Data ex_data_obj;
+    QStringList child_threads;
 };
 
 #endif // TASK1_H

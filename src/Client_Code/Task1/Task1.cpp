@@ -1,6 +1,21 @@
 #include "Task1.h"
 #include <QRandomGenerator>
 
+Task1::~Task1()
+{
+    // Clean up child threads by sending terminate message
+    for (const QString& child_name : child_threads)
+    {
+        Bico_QUIThread* thread = getThreadHash().value(child_name);
+        if (thread != nullptr)
+        {
+            Bico_QMessData mess_data("terminate", "");
+            thread->qinEnqueue(mess_data);
+            qDebug() << "Sent terminate message to child thread:" << child_name;
+        }
+    }
+}
+
 uint8_t Task1::MainTask()
 {
     // continue_to_run is used to terminate the thread by reset it to 0
@@ -44,6 +59,25 @@ uint8_t Task1::MainTask()
                         "qrc:/Client_Code/Task1/UI/Task1Content/App.qml"
                     );
             getThreadHash().value(thread_name)->start();
+        }
+        else if (mess == QString("create_child"))
+        {
+            qDebug() << objectName() << mess << data.value<QString>();
+            QString random_id = QString::number(QRandomGenerator::global()->bounded(1000000));
+            QString thread_name = "task_" + random_id;
+            Bico_QUIThread::create<Task1>
+                    (
+                        new Bico_DataQueue,
+                        1,
+                        new Bico_DataQueue,
+                        1,
+                        thread_name,
+                        "qrc:/Client_Code/Task1/UI/Task1Content/App.qml"
+                    );
+            getThreadHash().value(thread_name)->start();
+            // Add child thread to the list for cleanup
+            child_threads.append(thread_name);
+            qDebug() << "Created and tracked child thread:" << thread_name;
         }
         else if (mess == QString("size"))
         {

@@ -161,8 +161,8 @@ Rectangle {
 
     Button {
         id: button1
-        x: 220
-        y: 3
+        x: 40
+        y: 164
         width: 138
         height: 40
         text: qsTr("Create another App")
@@ -170,6 +170,20 @@ Rectangle {
         onClicked:
         {
             toThreadSignal("create", "")
+        }
+    }
+
+    Button {
+        id: button2
+        x: 40
+        y: 220
+        width: 138
+        height: 40
+        text: qsTr("Create child App")
+
+        onClicked:
+        {
+            toThreadSignal("create_child", "")
         }
     }
 
@@ -250,6 +264,6 @@ Rectangle {
 
 /*##^##
 Designer {
-    D{i:0}D{i:23;transitionDuration:2000}
+    D{i:0}D{i:15}D{i:24;transitionDuration:2000}
 }
 ##^##*/
