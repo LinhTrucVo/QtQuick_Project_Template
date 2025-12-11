@@ -76,7 +76,9 @@ Bico_QUIThread::~Bico_QUIThread()
             QObject::disconnect(this, SIGNAL(toUI(QString,QVariant)), root_object, SIGNAL(fromThread(QString,QVariant)));
             QObject::disconnect(root_object, SIGNAL(toThread(QString,QVariant)), this, SLOT(fromUI(QString,QVariant)));
         }
-        delete _engine;
+        
+        // SAFE: Schedule deletion in the main thread (where _engine was created)
+        _engine->deleteLater();
         _engine = nullptr;
     }
 
