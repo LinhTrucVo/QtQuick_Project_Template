@@ -1,7 +1,8 @@
 #include "Task1.h"
 #include <QRandomGenerator>
 
-Task1::~Task1()
+
+void Task1::cleanupChildren()
 {
     // Get all children from this->children() and terminate them
     QObjectList child_list = this->children();
@@ -38,6 +39,7 @@ uint8_t Task1::MainTask()
         if (mess == QString("terminate"))
         {
             continue_to_run = 0;
+            cleanupChildren();
         }
         else if (mess == QString("num1"))
         {

@@ -25,12 +25,11 @@ public:
         QObject *parent = nullptr
     ) : Bico_QUIThread(qin, qin_owner, qout, qout_owner, obj_name, ui_path, parent)
     {}
-
-    virtual ~Task1();
-
+    
     virtual uint8_t MainTask();
 
 private:
+    void cleanupChildren();
     Task1_Data ex_data_obj;
 };
 
