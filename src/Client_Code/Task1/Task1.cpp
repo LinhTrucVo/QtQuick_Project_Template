@@ -3,15 +3,23 @@
 
 Task1::~Task1()
 {
-    // Clean up child threads by sending terminate message
-    for (const QString& child_name : child_threads)
+    // Get all children from this->children() and terminate them
+    QObjectList child_list = this->children();
+    for (QObject* child : child_list)
     {
-        Bico_QUIThread* thread = getThreadHash().value(child_name);
+        Bico_QUIThread* thread = qobject_cast<Bico_QUIThread*>(child);
         if (thread != nullptr)
         {
+            QString child_name = thread->objectName();
             Bico_QMessData mess_data("terminate", "");
             thread->qinEnqueue(mess_data);
             qDebug() << "Sent terminate message to child thread:" << child_name;
+            
+            // Wait for child thread to finish, otherwise, the app will be failed and terminated
+            if (thread->isRunning())
+            {
+                thread->wait(5000); // Wait up to 5 seconds
+            }
         }
     }
 }
@@ -72,12 +80,10 @@ uint8_t Task1::MainTask()
                         new Bico_DataQueue,
                         1,
                         thread_name,
-                        "qrc:/Client_Code/Task1/UI/Task1Content/App.qml"
+                        "qrc:/Client_Code/Task1/UI/Task1Content/App.qml",
+                        getThreadHash().value(this->objectName())  // set parent
                     );
             getThreadHash().value(thread_name)->start();
-            // Add child thread to the list for cleanup
-            child_threads.append(thread_name);
-            qDebug() << "Created and tracked child thread:" << thread_name;
         }
         else if (mess == QString("size"))
         {

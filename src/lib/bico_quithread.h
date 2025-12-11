@@ -63,12 +63,13 @@ public:
             Bico_DataQueue *qout = nullptr,
             uint8_t qout_owner = 0,
             QString obj_name = "",
-            QString ui_path = ""
+            QString ui_path = "",
+            QObject *parent = nullptr
     )
     {
         if (thread_hash.find(obj_name) == thread_hash.end())
         {
-            T* thread = new T(qin, qin_owner, qout, qout_owner, obj_name, ui_path);
+            T* thread = new T(qin, qin_owner, qout, qout_owner, obj_name, ui_path, parent);
             return thread;
         }
         else

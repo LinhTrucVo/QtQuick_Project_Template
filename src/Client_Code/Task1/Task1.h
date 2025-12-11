@@ -22,7 +22,7 @@ public:
         uint8_t qout_owner = 0,
         QString obj_name = "",
         QString ui_path = "",
-        QThread *parent = nullptr
+        QObject *parent = nullptr
     ) : Bico_QUIThread(qin, qin_owner, qout, qout_owner, obj_name, ui_path, parent)
     {}
 
@@ -32,7 +32,6 @@ public:
 
 private:
     Task1_Data ex_data_obj;
-    QStringList child_threads;
 };
 
 #endif // TASK1_H

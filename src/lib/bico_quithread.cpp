@@ -41,8 +41,22 @@ Bico_QUIThread::Bico_QUIThread
     QString obj_name,
     QString ui_path,
     QObject *parent
-) : QThread(parent), Bico_QThread(qin, qin_owner, qout, qout_owner)
+) : Bico_QThread(qin, qin_owner, qout, qout_owner), QThread(parent)
 {
+    // Move this thread object to the main thread for proper signal handling
+    if (main_app != nullptr)
+    {
+        moveToThread(main_app->thread());
+    }
+
+    // Set parent after moveToThread to ensure proper thread affinity
+    // Otherwise, the parent-child relationship is not correctly established in mainapp_context
+    // -> in that case, parent will have no children
+    if (parent != nullptr)
+    {
+        setParent(parent);
+    }
+    
     setObjectName(obj_name);
     thread_hash_mutex.lock();
     thread_hash.insert(obj_name, this);
@@ -50,12 +64,6 @@ Bico_QUIThread::Bico_QUIThread
 
     _ui_path = ui_path;
     _engine = nullptr;
-
-    // Move this thread object to the main thread for proper signal handling
-    if (main_app != nullptr)
-    {
-        moveToThread(main_app->thread());
-    }
 }
 
 Bico_QUIThread::~Bico_QUIThread()
