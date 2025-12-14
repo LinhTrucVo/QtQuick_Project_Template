@@ -73,3 +73,11 @@ install(TARGETS QtQuick_Project
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+# Below is needed for deployment on macOS and Windows
+# qt_generate_deploy_app_script(
+#     TARGET QMainWindow_Project
+#     OUTPUT_SCRIPT deploy_script
+#     NO_UNSUPPORTED_PLATFORM_ERROR
+# )
+# install(SCRIPT ${deploy_script})
