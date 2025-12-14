@@ -8,6 +8,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     app.setQuitOnLastWindowClosed(false);
     Bico_QUIThread::setMainApp(&app);
+    
+    // Initialize factories in main thread to ensure thread safety
+    Bico_QUIThread::initializeFactories();
 
     // // Print all available resource paths
     // QDirIterator qrc(":", QDirIterator::Subdirectories);
