@@ -27,6 +27,7 @@ void Task1::cleanupChildren()
 
 uint8_t Task1::MainTask()
 {
+    static int count = 0;
     // continue_to_run is used to terminate the thread by reset it to 0
     uint8_t continue_to_run = 1;
 
@@ -57,8 +58,7 @@ uint8_t Task1::MainTask()
         else if (mess == QString("create"))
         {
             qDebug() << objectName() << mess << data.value<QString>();
-            QString random_id = QString::number(QRandomGenerator::global()->bounded(1000000));
-            QString thread_name = "task_" + random_id;
+            QString thread_name = "task_" + QString::number(++count);
             Bico_QUIThread::create<Task1>
                     (
                         new Bico_DataQueue,
@@ -73,8 +73,7 @@ uint8_t Task1::MainTask()
         else if (mess == QString("create_child"))
         {
             qDebug() << objectName() << mess << data.value<QString>();
-            QString random_id = QString::number(QRandomGenerator::global()->bounded(1000000));
-            QString thread_name = "task_" + random_id;
+            QString thread_name = "task_" + QString::number(++count);
             Bico_QUIThread::create<Task1>
                     (
                         new Bico_DataQueue,

@@ -27,9 +27,12 @@ Window {
     Connections
     {
         target: window
-        function onClosing (){ toThread("terminate", "") } // new syntax
+        function onClosing (close){ 
+            close.accepted = false  // Prevent the window from closing immediately
+            toThread("terminate", "") // Send terminate message to thread
+        } // Thread will handle cleanup and close the window via deleteLater()
     }
-    // Terminate the thread when the window is close - begin ------------------------------------------------------------------
+    // Terminate the thread when the window is close - end ------------------------------------------------------------------
 
 
 // =====================================================================================================================================================================
