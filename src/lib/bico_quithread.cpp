@@ -1,5 +1,18 @@
 #include "bico_quithread.h"
 
+// Avoid runntime issue: "QMetaMethod::invoke: Unable to handle unregistered datatype 'QThread::Priority'"
+// Register QThread::Priority for QMetaObject::invokeMethod
+Q_DECLARE_METATYPE(QThread::Priority)
+
+namespace {
+    struct MetaTypeRegistration {
+        MetaTypeRegistration() {
+            qRegisterMetaType<QThread::Priority>("QThread::Priority");
+        }
+    };
+    static MetaTypeRegistration registration;
+}
+
 // Global engine loader instance
 EngineLoader* engine_loader = new EngineLoader();
 
