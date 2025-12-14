@@ -1,6 +1,7 @@
 #include "bico_quithread.h"
 
-// Avoid runntime issue: "QMetaMethod::invoke: Unable to handle unregistered datatype 'QThread::Priority'"
+// Avoid runntime issue: "QMetaMethod::invoke: Unable to handle unregistered datatype 'QThread::Priority'" 
+// (this issue happen when testing on linux)
 // Register QThread::Priority for QMetaObject::invokeMethod
 Q_DECLARE_METATYPE(QThread::Priority)
 
@@ -104,22 +105,9 @@ Bico_QUIThread::Bico_QUIThread
     QString ui_path,
     QObject *parent
 ) : Bico_QThread(qin, qin_owner, qout, qout_owner), QThread(parent)
-{
-    // Move this thread object to the main thread for proper signal handling
-    if (main_app != nullptr)
-    {
-        moveToThread(main_app->thread());
-    }
-
-    // Set parent after moveToThread to ensure proper thread affinity
-    // Otherwise, the parent-child relationship is not correctly established in mainapp_context
-    // -> in that case, parent will have no children
-    if (parent != nullptr)
-    {
-        setParent(parent);
-    }
-    
+{    
     setObjectName(obj_name);
+    
     thread_hash_mutex.lock();
     thread_hash.insert(obj_name, this);
     thread_hash_mutex.unlock();

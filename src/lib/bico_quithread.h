@@ -156,15 +156,6 @@ public:
         }
     }
 
-    static void remove(QString thread_name)
-    {
-        if (thread_hash.contains(thread_name))
-        {
-            Bico_QMessData mess_data("terminate", "");
-            getThreadHash().value(thread_name)->qinEnqueue(mess_data);
-        }
-    }
-
     static QHash<QString, Bico_QUIThread *> getThreadHash();
     static QGuiApplication* getMainApp();
     static void setMainApp(QGuiApplication* app);
