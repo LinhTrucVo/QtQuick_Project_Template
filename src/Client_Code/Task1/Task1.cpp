@@ -1,6 +1,30 @@
 #include "Task1.h"
 #include <QRandomGenerator>
 
+// Initialize static member
+int Task1::count = 0;
+
+Task1::Task1
+(
+    Bico_DataQueue *qin,
+    uint8_t qin_owner,
+    Bico_DataQueue *qout,
+    uint8_t qout_owner,
+    QString obj_name,
+    QString ui_path,
+    QObject *parent
+) : Bico_QUIThread(qin, qin_owner, qout, qout_owner, obj_name, ui_path, parent)
+{
+    // Initialize message handlers
+    message_handlers["terminate"] = &Task1::_handle_terminate;
+    message_handlers["num1"] = &Task1::_handle_num1;
+    message_handlers["num2"] = &Task1::_handle_num2;
+    message_handlers["text"] = &Task1::_handle_text;
+    message_handlers["create"] = &Task1::_handle_create;
+    message_handlers["create_child"] = &Task1::_handle_create_child;
+    message_handlers["size"] = &Task1::_handle_size;
+    message_handlers["from_another_thread"] = &Task1::_handle_from_another_thread;
+}
 
 void Task1::cleanupChildren()
 {
@@ -27,7 +51,6 @@ void Task1::cleanupChildren()
 
 uint8_t Task1::MainTask()
 {
-    static int count = 0;
     // continue_to_run is used to terminate the thread by reset it to 0
     uint8_t continue_to_run = 1;
 
@@ -36,64 +59,12 @@ uint8_t Task1::MainTask()
     {
         QString mess = input.mess();
         QVariant data = input.data();
-        // Received message is handled here - begin -------------------------------------------------------------------------
-        if (mess == QString("terminate"))
+
+        // Use the message handler map
+        auto handler_it = message_handlers.find(mess);
+        if (handler_it != message_handlers.end())
         {
-            continue_to_run = 0;
-            cleanupChildren();
-        }
-        else if (mess == QString("num1"))
-        {
-            qDebug() << objectName() << mess << data.value<int>() << "\t" << ex_data_obj.getData_1();
-        }
-        else if (mess == QString("num2"))
-        {
-            qDebug() << objectName() << mess << data.value<int>() << "\t" << ex_data_obj.getData_2();
-        }
-        else if (mess == QString("text"))
-        {
-            qDebug() << objectName() << mess << data.value<QString>();
-            emit toUI(mess, data);
-        }
-        else if (mess == QString("create"))
-        {
-            qDebug() << objectName() << mess << data.value<QString>();
-            QString thread_name = "task_" + QString::number(++count);
-            Bico_QUIThread::create<Task1>
-                    (
-                        new Bico_DataQueue,
-                        1,
-                        new Bico_DataQueue,
-                        1,
-                        thread_name,
-                        "qrc:/Client_Code/Task1/UI/Task1Content/App.qml"
-                    );
-            getThreadHash().value(thread_name)->start();
-        }
-        else if (mess == QString("create_child"))
-        {
-            qDebug() << objectName() << mess << data.value<QString>();
-            QString thread_name = "task_" + QString::number(++count);
-            Bico_QUIThread::create<Task1>
-                    (
-                        new Bico_DataQueue,
-                        1,
-                        new Bico_DataQueue,
-                        1,
-                        thread_name,
-                        "qrc:/Client_Code/Task1/UI/Task1Content/App.qml",
-                        getThreadHash().value(this->objectName())  // set parent
-                    );
-            getThreadHash().value(thread_name)->start();
-        }
-        else if (mess == QString("size"))
-        {
-            qDebug() << objectName() << mess << data.value<QSizeF>();
-            emit toUI(mess, data);
-        }
-        else if (mess == QString("from_another_thread"))
-        {
-            qDebug() << objectName() << mess << ": "  << input.src() << data.value<int>();
+            continue_to_run = (this->*handler_it.value())(data, input);
         }
     }
 
@@ -124,5 +95,78 @@ uint8_t Task1::MainTask()
     // Test the remove method - end --------------------------------------------------------------
 
     return continue_to_run;
+}
+
+uint8_t Task1::_handle_terminate(QVariant& data, Bico_QMessData& input)
+{
+    cleanupChildren();
+    return 0;  // Signal to stop running
+}
+
+uint8_t Task1::_handle_num1(QVariant& data, Bico_QMessData& input)
+{
+    qDebug() << objectName() << "num1" << data.value<int>() << "\t" << ex_data_obj.getData_1();
+    return 1;
+}
+
+uint8_t Task1::_handle_num2(QVariant& data, Bico_QMessData& input)
+{
+    qDebug() << objectName() << "num2" << data.value<int>() << "\t" << ex_data_obj.getData_2();
+    return 1;
+}
+
+uint8_t Task1::_handle_text(QVariant& data, Bico_QMessData& input)
+{
+    qDebug() << objectName() << "text" << data.value<QString>();
+    emit toUI("text", data);
+    return 1;
+}
+
+uint8_t Task1::_handle_create(QVariant& data, Bico_QMessData& input)
+{
+    qDebug() << objectName() << "create" << data.value<QString>();
+    QString thread_name = "task_" + QString::number(++count);
+    Bico_QUIThread::create<Task1>
+            (
+                new Bico_DataQueue,
+                1,
+                new Bico_DataQueue,
+                1,
+                thread_name,
+                "qrc:/Client_Code/Task1/UI/Task1Content/App.qml"
+            );
+    getThreadHash().value(thread_name)->start();
+    return 1;
+}
+
+uint8_t Task1::_handle_create_child(QVariant& data, Bico_QMessData& input)
+{
+    qDebug() << objectName() << "create_child" << data.value<QString>();
+    QString thread_name = "task_" + QString::number(++count);
+    Bico_QUIThread::create<Task1>
+            (
+                new Bico_DataQueue,
+                1,
+                new Bico_DataQueue,
+                1,
+                thread_name,
+                "qrc:/Client_Code/Task1/UI/Task1Content/App.qml",
+                getThreadHash().value(this->objectName())  // set parent
+            );
+    getThreadHash().value(thread_name)->start();
+    return 1;
+}
+
+uint8_t Task1::_handle_size(QVariant& data, Bico_QMessData& input)
+{
+    qDebug() << objectName() << "size" << data.value<QSizeF>();
+    emit toUI("size", data);
+    return 1;
+}
+
+uint8_t Task1::_handle_from_another_thread(QVariant& data, Bico_QMessData& input)
+{
+    qDebug() << objectName() << "from_another_thread: " << input.src() << data.value<int>();
+    return 1;
 }
 
