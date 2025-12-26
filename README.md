@@ -76,3 +76,7 @@ qDebug does not output the message to VSCode Debug Console, qDebug output the me
 To print debug message in VSCode Debug Console, use the VSCode LogPoint instead.
 
 Reference: https://code.visualstudio.com/docs/debugtest/debugging
+
+# Other
+Qt Kit is defined wwhen install the Qt Extension in VSCode
+C:\Users\<user_name>\AppData\Local\CMakeTools\cmake-tools-kits.json
